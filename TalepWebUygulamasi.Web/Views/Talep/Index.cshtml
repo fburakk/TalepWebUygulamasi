@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TalepWebUygulamasi.Entities.Talep>
+
+@{
+    ViewBag.Title = "Talep Listesi";
+}
+
+<h2>Talep Listesi</h2>
+
+<p>
+    @Html.ActionLink("Yeni Talep Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TalepKonusu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TalepAciklama)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TalepKonusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TalepAciklama)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.TalepId }) |
+            @Html.ActionLink("Ayrıntılar", "Details", new { id=item.TalepId }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.TalepId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,13 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TalepWebUygulamasi.Entities;
 
 namespace TalepWebUygulamasi.DAL
 {
-    class TalepContext : DbContext
+    public class TalepContext : DbContext, IDisposable
     {
-        public TalepContext() : base("") { }
+        public TalepContext() : base("name=TalepWebUygulamasiConnection") { }
 
-        public DbSet<Talep> { get; set; }
+        public DbSet<Talep> Talepler { get; set; }
     }
 }

@@ -1,0 +1,34 @@
+﻿@model TalepWebUygulamasi.Entities.Talep
+
+@{
+    ViewBag.Title = "Ayrıntılar";
+}
+
+<h2>Talep Ayrıntıları</h2>
+
+<div>
+    <h4>Talep</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TalepKonusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalepKonusu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TalepAciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalepAciklama)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.TalepId }) |
+    @Html.ActionLink("Talep Listesine Geri Dön", "Index")
+</p>

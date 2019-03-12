@@ -1,0 +1,40 @@
+﻿@model TalepWebUygulamasi.Entities.Talep
+
+@{
+    ViewBag.Title = "Talep Sil";
+}
+
+<h2>Talep Sil</h2>
+
+<h3>Talebi Silmek İstediğinize Eminmisiniz?</h3>
+<div>
+    <h4>Talep</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TalepKonusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalepKonusu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TalepAciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalepAciklama)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Talep Listesine Geri Dön", "Index")
+        </div>
+    }
+</div>
