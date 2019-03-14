@@ -29,8 +29,12 @@
                     @*@Html.ActionLink(@userName.ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
 
                     //Logout
-                    @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Oturumu Kapat", "Logout", "Login", new { area = "" }, new { @class = "navbar-brand" })
 
+                }
+                else
+                {
+                    @Html.ActionLink("Kayıt Ol", "Register", "Login", new { area = "" }, new { @class = "navbar-brand" })
                 }
             </div>
             <div class="navbar-collapse collapse">

@@ -11,7 +11,7 @@ namespace TalepWebUygulamasi.Web.Controllers
 {
     public class LoginController : Controller
     {
-
+        LoginIslemler loginIslemler = new LoginIslemler();
 
         // GET: Login
         public ActionResult Login()
@@ -22,7 +22,6 @@ namespace TalepWebUygulamasi.Web.Controllers
         [HttpPost]
         public ActionResult Login(HUser user, string ReturnUrl)
         {
-            LoginIslemler loginIslemler = new LoginIslemler();
             if (loginIslemler.IsValid(user))
             {
                 FormsAuthentication.SetAuthCookie(user.UserName, false);
@@ -38,6 +37,23 @@ namespace TalepWebUygulamasi.Web.Controllers
         {
             FormsAuthentication.SignOut();
             return Redirect("/Talep/Index");
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(HUser user)
+        {
+            bool isSuccessfullyRegistered = loginIslemler.saveUser(user);
+            if (isSuccessfullyRegistered)
+            {
+                FormsAuthentication.SetAuthCookie(user.UserName, false);
+                return Redirect("/Talep/Index");
+            }
+            return View();
         }
     }
 }
