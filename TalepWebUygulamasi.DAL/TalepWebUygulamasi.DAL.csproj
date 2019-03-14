@@ -57,6 +57,18 @@
     <Compile Include="Migrations\201903121509332_talep1.Designer.cs">
       <DependentUpon>201903121509332_talep1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903130833444_user.cs" />
+    <Compile Include="Migrations\201903130833444_user.Designer.cs">
+      <DependentUpon>201903130833444_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903130847568_huser.cs" />
+    <Compile Include="Migrations\201903130847568_huser.Designer.cs">
+      <DependentUpon>201903130847568_huser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141901251_user1.cs" />
+    <Compile Include="Migrations\201903141901251_user1.Designer.cs">
+      <DependentUpon>201903141901251_user1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TalepContext.cs" />
@@ -77,6 +89,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903121509332_talep1.resx">
       <DependentUpon>201903121509332_talep1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903130833444_user.resx">
+      <DependentUpon>201903130833444_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903130847568_huser.resx">
+      <DependentUpon>201903130847568_huser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141901251_user1.resx">
+      <DependentUpon>201903141901251_user1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

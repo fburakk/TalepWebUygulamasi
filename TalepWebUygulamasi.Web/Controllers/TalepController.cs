@@ -7,7 +7,8 @@ using TalepWebUygulamasi.Entities;
 using TalepWebUygulamasi.Services;
 
 namespace TalepWebUygulamasi.Web.Controllers
-{
+{            
+    [Authorize]
     public class TalepController : Controller
     {
         TalepIslemler talepIslemler = new TalepIslemler();
@@ -16,6 +17,7 @@ namespace TalepWebUygulamasi.Web.Controllers
         public ActionResult Index()
         {
             var talepler = talepIslemler.TalepleriGetir();
+            ViewData["uname"] = User.Identity.Name;
             return View(talepler);
         }
 

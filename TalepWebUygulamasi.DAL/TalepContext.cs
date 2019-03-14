@@ -13,5 +13,6 @@ namespace TalepWebUygulamasi.DAL
         public TalepContext() : base("name=TalepWebUygulamasiConnection") { }
 
         public DbSet<Talep> Talepler { get; set; }
+        public DbSet<HUser> Kullanıcılar { get; set; }
     }
 }
