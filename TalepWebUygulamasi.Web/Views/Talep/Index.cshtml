@@ -7,33 +7,53 @@
 <h2>Talep Listesi</h2>
 
 <p>
-    @Html.ActionLink("Yeni Talep Oluştur", "Create")
+    @Html.ActionLink("Yeni Talep Oluştur", "Create",  new { }, new { @class = "btn btn-primary" } )
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TalepKonusu)
+            @*@Html.DisplayNameFor(model => model.TalepKonusu)*@
+            Talep Konusu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TalepAciklama)
+            @*@Html.DisplayNameFor(model => model.TalepAciklama)*@
+            Talep Açıklama
+        </th>
+        <th>
+            Talep İşlemler
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.FileUrl)*@
+            Dosya
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TalepKonusu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TalepAciklama)
-        </td>
-        <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id=item.TalepId }) |
-            @Html.ActionLink("Ayrıntılar", "Details", new { id=item.TalepId }) |
-            @Html.ActionLink("Sil", "Delete", new { id=item.TalepId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TalepKonusu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TalepAciklama)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.TalepId }, new { @class = "btn btn-warning" } )
+                @Html.ActionLink("Ayrıntılar", "Details", new { id = item.TalepId }, new { @class = "btn btn-default" }) 
+                @Html.ActionLink("Sil", "Delete", new { id = item.TalepId }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                @if (@item.FileUrl != null)
+                {
+                    <a class ="btn btn-success" href="@item.FileUrl ">İndir</a>
+                }
+                else
+                {
+                    <button class="btn btn-block">Dosya Yok</button>
+                }
+            </td>
+        </tr>
+    }
 
 </table>

@@ -15,5 +15,13 @@ namespace TalepWebUygulamasi.Entities
         public string TalepKonusu { get; set; }
 
         public string TalepAciklama { get; set; }
+
+        public string FileUrl { get; set; }
+
+        public string TalepDegerlendirmesi { get; set; }
+
+        public bool olumluOlumsuz { get; set; }
+
+        public TimestampAttribute MyProperty { get; set; }
     }
 }

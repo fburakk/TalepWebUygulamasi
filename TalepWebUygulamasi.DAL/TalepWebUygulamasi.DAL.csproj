@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201903142034138_user11.Designer.cs">
       <DependentUpon>201903142034138_user11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903151748248_fileurl.cs" />
+    <Compile Include="Migrations\201903151748248_fileurl.Designer.cs">
+      <DependentUpon>201903151748248_fileurl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TalepContext.cs" />
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903142034138_user11.resx">
       <DependentUpon>201903142034138_user11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903151748248_fileurl.resx">
+      <DependentUpon>201903151748248_fileurl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

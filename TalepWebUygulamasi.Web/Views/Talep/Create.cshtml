@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Talep</h4>
         <hr />
@@ -32,6 +32,13 @@
         </div>
 
         <div class="form-group">
+            <label>Dosya</label>
+                @Html.EditorFor(model => model.FileUrl, new { htmlAttributes = new { @type = "hidden" } })
+                @*<input name="model.FileUrl" id="file" type="hidden"/>*@
+                <input id="fileUpload" name="model.FileUrl" type="file" accept=".pdf" />
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Oluştur" class="btn btn-default" />
             </div>
@@ -39,8 +46,42 @@
     </div>
 }
 
+<script>
+    $('#fileUpload').change(function () {
+        debugger;
+        var element = this;
+        var formData = new FormData();
+        var totalFiles = element.files.length;
+        for (var i = 0; i < totalFiles; i++) {
+            var file = element.files[i];
+            formData.append("File", file);
+        }
+        $.ajax({
+            type: "POST",
+            url: '/Shared/UploadFile',
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false
+        })
+        .done(function (response) {
+            debugger;
+            console.log(response);
+            if (response.Success == true) {
+                $("#FileUrl").val(response.fileURL);
+                //$("#categoryImage").attr("src", response.ImageURL);
+            }
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            debugger;
+            alert("FAILED TO UPLOAD FILE!");
+        });
+    });
+</script>
+
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Talep Listesine Geri Dön", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
