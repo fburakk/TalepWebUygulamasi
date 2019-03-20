@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201903151748248_fileurl.Designer.cs">
       <DependentUpon>201903151748248_fileurl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903200927319_foreignkey.cs" />
+    <Compile Include="Migrations\201903200927319_foreignkey.Designer.cs">
+      <DependentUpon>201903200927319_foreignkey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TalepContext.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903151748248_fileurl.resx">
       <DependentUpon>201903151748248_fileurl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903200927319_foreignkey.resx">
+      <DependentUpon>201903200927319_foreignkey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

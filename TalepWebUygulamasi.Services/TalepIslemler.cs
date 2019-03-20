@@ -40,8 +40,17 @@ namespace TalepWebUygulamasi.Services
             using (var talepContext = new TalepContext())
             {
                 var guncellenecekTalep = talepContext.Talepler.Find(guncelTalep.TalepId);
-                guncellenecekTalep.TalepKonusu = guncelTalep.TalepKonusu;
-                guncellenecekTalep.TalepAciklama= guncelTalep.TalepAciklama;
+
+                //string properties
+                guncellenecekTalep.TalepKonusu = guncelTalep.TalepKonusu; 
+                guncellenecekTalep.TalepAciklama = guncelTalep.TalepAciklama; 
+                guncellenecekTalep.DegerlendirmeZamani = guncelTalep.DegerlendirmeZamani; 
+                guncellenecekTalep.TalepDegerlendirmesi = guncelTalep.TalepDegerlendirmesi;
+                
+                //bool properties
+                guncellenecekTalep.Degerlendirildimi = guncelTalep.Degerlendirildimi;
+                guncellenecekTalep.olumluOlumsuz = guncelTalep.olumluOlumsuz;
+
                 talepContext.SaveChanges();
             }
         }

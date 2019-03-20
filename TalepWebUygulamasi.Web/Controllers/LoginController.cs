@@ -25,12 +25,10 @@ namespace TalepWebUygulamasi.Web.Controllers
             if (loginIslemler.IsValid(user))
             {
                 FormsAuthentication.SetAuthCookie(user.UserName, false);
-                return Redirect(ReturnUrl);
+                if (ReturnUrl == null) { return Redirect("/"); }
+                else {  return Redirect(ReturnUrl); }
             }
-            else
-            {
-                return View(user);
-            }
+            else {  return View(user);  }
         }
 
         public ActionResult Logout()

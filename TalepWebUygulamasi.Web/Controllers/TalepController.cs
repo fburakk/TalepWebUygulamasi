@@ -12,12 +12,15 @@ namespace TalepWebUygulamasi.Web.Controllers
     public class TalepController : Controller
     {
         TalepIslemler talepIslemler = new TalepIslemler();
+        KullaniciIslemler kullaniciIslemler = new KullaniciIslemler();
+
 
         // GET: Talep
         public ActionResult Index()
         {
             var talepler = talepIslemler.TalepleriGetir();
             ViewData["uname"] = User.Identity.Name;
+            ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
             return View(talepler);
         }
 
@@ -25,12 +28,16 @@ namespace TalepWebUygulamasi.Web.Controllers
         public ActionResult Details(int id)
         {
             var talep = talepIslemler.TalebiGetir(id);
+            ViewData["uname"] = User.Identity.Name;
+            ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
             return View(talep);
         }
 
         // GET: Talep/Create
         public ActionResult Create()
         {
+            ViewData["uname"] = User.Identity.Name;
+            ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
             return View();
         }
 
@@ -54,6 +61,8 @@ namespace TalepWebUygulamasi.Web.Controllers
         public ActionResult Edit(int id)
         {
             var talep = talepIslemler.TalebiGetir(id);
+            ViewData["uname"] = User.Identity.Name;
+            ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
             return View(talep);
         }
 
@@ -77,6 +86,8 @@ namespace TalepWebUygulamasi.Web.Controllers
         public ActionResult Delete(int id)
         {
             var silinecekTalep = talepIslemler.TalebiGetir(id);
+            ViewData["uname"] = User.Identity.Name;
+            ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
             return View(silinecekTalep);
         }
 
@@ -94,6 +105,31 @@ namespace TalepWebUygulamasi.Web.Controllers
             {
                 //Console.WriteLine(ex.Message);
                 return View(talep);
+            }
+        }
+
+        // GET: Talep/Evaluate/5
+        public ActionResult Evaluate(int id)
+        {
+            var talep = talepIslemler.TalebiGetir(id);
+            ViewData["uname"] = User.Identity.Name;
+            ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
+            return View(talep);
+        }
+
+        // POST: Talep/Edit/5
+        [HttpPost]
+        public ActionResult Evaluate(Talep talep)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                talepIslemler.TalepGuncelle(talep);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
             }
         }
     }
