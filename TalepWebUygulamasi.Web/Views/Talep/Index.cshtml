@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Talep Listesi";
     var userRole = ViewData["urole"];
-
+    var uname = ViewData["uname"];
 }
 
 <h2>Talep Listesi</h2>
@@ -11,7 +11,7 @@
 @if ((string)userRole == "Kullanıcı")
 {
     <p>
-        @Html.ActionLink("Yeni Talep Oluştur", "Create", new { }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Yeni Talep Oluştur", "Create", null, new { @class = "btn btn-primary" })
     </p>
 }
 
@@ -50,55 +50,58 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TalepKonusu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TalepAciklama)
-            </td>
-            <td>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.TalepId }, new { @class = "btn btn-info" })
-                @Html.ActionLink("Ayrıntılar", "Details", new { id = item.TalepId }, new { @class = "btn btn-default" })
-                @Html.ActionLink("Sil", "Delete", new { id = item.TalepId }, new { @class = "btn btn-danger" })
-            </td>
-            <td>
-                @if (@item.FileUrl != null)
-                {
-                    <a class="btn btn-success" href="@item.FileUrl ">İndir</a>
-                }
-                else
-                {
-                    <button class="btn btn-block">Dosya Yok</button>
-                }
-            </td>
-            @if ((string)userRole == "Kullanıcı")
-            {
+        if (item.TalebiYapan == (string)uname)
+        {
 
-                if (item.Degerlendirildimi)
-                {
-                    if (item.olumluOlumsuz)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TalepKonusu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TalepAciklama)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.TalepId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Ayrıntılar", "Details", new { id = item.TalepId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.TalepId }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @if (@item.FileUrl != null)
                     {
-                        <td>Talebiniz Olumlu Değerlendirildi, Bilgi için Ayrıntıları İnceleyebilirsiniz</td>
+                        <a class="btn btn-success" href="@item.FileUrl ">İndir</a>
                     }
                     else
                     {
-                        <td>Talebiniz Olumsuz Değerlendirildi, Bilgi için Ayrıntıları İnceleyebilirsiniz</td>
+                        <button class="btn btn-block">Dosya Yok</button>
                     }
-                }
-                else
+                </td>
+                @if ((string)userRole == "Kullanıcı")
                 {
+
+                    if (item.Degerlendirildimi)
+                    {
+                        if (item.olumluOlumsuz)
+                        {
+                            <td>Talebiniz Olumlu Değerlendirildi, Bilgi için Ayrıntıları İnceleyebilirsiniz</td>
+                        }
+                        else
+                        {
+                            <td>Talebiniz Olumsuz Değerlendirildi, Bilgi için Ayrıntıları İnceleyebilirsiniz</td>
+                        }
+                    }
+                    else
+                    {
                         <td>Henüz Değerlendirilmedi</td>
                     }
-            }
-            @if ((string)userRole == "Yönetici")
-            {
-                <td>
-                    @Html.ActionLink("Değerlendir", "Evaluate", new { id = item.TalepId }, new { @class = "btn btn-warning" })
-                    @*<dialog class="btn"></dialog>*@
-                </td>
-            }
-        </tr>
+                }
+                @if ((string)userRole == "Yönetici")
+                {
+                    <td>
+                        @Html.ActionLink("Değerlendir", "Evaluate", new { id = item.TalepId }, new { @class = "btn btn-warning" })
+                        @*<dialog class="btn"></dialog>*@
+                    </td>
+                }
+            </tr>
+        }
     }
-
 </table>

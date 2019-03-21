@@ -124,7 +124,7 @@ namespace TalepWebUygulamasi.Web.Controllers
             try
             {
                 // TODO: Add update logic here
-                talepIslemler.TalepGuncelle(talep);
+                talepIslemler.TalepDegerlendir(talep);
                 return RedirectToAction("Index");
             }
             catch
