@@ -18,6 +18,14 @@ namespace TalepWebUygulamasi.Services
         //    }
         //}
 
+        public List<HUser> KullanicilariGetir()
+        {
+            using (var talepContext = new TalepContext())
+            {
+                return talepContext.Kullanıcılar.ToList();
+            }
+        }
+
         public HUser KullaniciyiGetir(string userName)
         {
             using (var talepContext = new TalepContext())

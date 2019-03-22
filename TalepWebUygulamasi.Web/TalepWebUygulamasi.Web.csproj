@@ -168,13 +168,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Talep\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Talep\Details.cshtml" />
     <Content Include="Views\Talep\Create.cshtml" />
     <Content Include="Views\Talep\Edit.cshtml" />
     <Content Include="Views\Talep\Delete.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Talep\Evaluate.cshtml" />
+    <Content Include="Views\Talep\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

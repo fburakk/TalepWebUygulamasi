@@ -1,63 +1,96 @@
 ﻿@model TalepWebUygulamasi.Entities.Talep
 
-@{
-    ViewBag.Title = "Yeni Talep Oluştur";
-    var userRole = ViewData["urole"];
-}
+    @{
+        ViewBag.Title = "Yeni Talep Oluştur";
+        var userRole = ViewData["urole"];
+        IEnumerable<string> yoneticiIsimleri = (IEnumerable<string>)ViewData["yoneticiler"];
+    }
 
-@if((string)userRole != "Yönetici"){
+    @if ((string)userRole != "Yönetici")
+    {
 
     <h2>Yeni Talep Oluştur</h2>
 
     using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Talep</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.Label("Talep Konusu", htmlAttributes: new { @class = "control-label col-md-2" })
-                @*@Html.LabelFor(model => model.TalepKonusu, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TalepKonusu, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TalepKonusu, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-horizontal">
+    <h4>Talep</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+    @Html.Label("Talep Konusu", htmlAttributes: new { @class = "control-label col-md-2" })
+    @*@Html.LabelFor(model => model.TalepKonusu, htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.TalepKonusu, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TalepKonusu, "", new { @class = "text-danger" })
+    </div>
+    </div>
 
-            <div class="form-group">
-                @Html.Label("Talep Açıklama", htmlAttributes: new { @class = "control-label col-md-2" })
-                @*@Html.LabelFor(model => model.TalepAciklama, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TalepAciklama, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TalepAciklama, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+    @Html.Label("Talep Açıklama", htmlAttributes: new { @class = "control-label col-md-2" })
+    @*@Html.LabelFor(model => model.TalepAciklama, htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.TalepAciklama, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TalepAciklama, "", new { @class = "text-danger" })
+    </div>
+    </div>
 
-            <div class="form-group">
-                <label>@*Dosya*@</label>
-                @Html.Label("Dosya", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FileUrl, new { htmlAttributes = new { @type = "hidden"@*, @class = "form-control"*@ } })
-                    @*<input name="model.FileUrl" id="file" type="hidden"/>*@
-                    <input id="fileUpload" name="model.FileUrl" type="file" accept=".pdf" class="form-control" />
-                </div>
-            </div>
+    <div class="form-group">
+    <label>@*Dosya*@</label>
+    @Html.Label("Dosya", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.FileUrl, new
+    {
+    htmlAttributes = new
+    {
+        @type = "hidden"@*, @class = "form-control"*@ }
+    })
+        @*<input name="model.FileUrl" id="file" type="hidden"/>*@
+        <input id="fileUpload" name="model.FileUrl" type="file" accept=".pdf" class="form-control" />
+    </div>
+    </div>
 
-            @{ 
-                var uname = ViewData["uname"];
-            }
-            <div class="form-group">
-                @Html.EditorFor(model => model.TalebiYapan, new { htmlAttributes = new { @type = "hidden", @Value = uname } })
-            </div>
+    @{
+    var uname = ViewData["uname"];
+    }
+    <div class="form-group">
+    @Html.EditorFor(model => model.TalebiYapan, new { htmlAttributes = new { @type = "hidden", @Value = uname } })
+    </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Oluştur" class="btn btn-default" />
-                </div>
+    @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+
+    foreach (var item in yoneticiIsimleri)
+    {
+
+            listItems.Add(new SelectListItem
+            {
+                Text = item,
+                Value = item,
+                //Selected = true
+            });
+        }
+
+    }
+
+    <div class="form-group">
+        @Html.Label("Talebin Yapılacağı Yönetici", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TalebinYapildigiKisi, listItems)
+                @*@Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.TalebinYapildigiKisi, "", new { @class = "text-danger" })
             </div>
-        </div>
+    </div>
+
+    <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Oluştur" class="btn btn-default" />
+    </div>
+    </div>
+    </div>
     }
 
     <script>
@@ -101,8 +134,9 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-}
-else{
-    <h1>Yöneticiler Talep Oluşturamaz</h1>
-    @Html.ActionLink("Talep Listesine Geri Dön", "Index")
-}
+    }
+    else
+    {
+        <h1>Yöneticiler Talep Oluşturamaz</h1>
+        @Html.ActionLink("Talep Listesine Geri Dön", "Index")
+    }

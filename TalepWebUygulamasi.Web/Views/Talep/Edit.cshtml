@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Talep Düzenle";
+    var userRole = ViewData["urole"];
 }
 
 <h2>Talep Düzenle</h2>
@@ -12,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Talep</h4>
+        @*<h4>Talep</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.TalepId)
@@ -44,6 +45,14 @@
 <div>
     @Html.ActionLink("Talep Listesine Geri Dön", "Index")
 </div>
+
+@if ((string)userRole == "Yönetici")
+{
+    <td>
+        @Html.ActionLink("Değerlendir", "Evaluate", new { id = Model.TalepId }, new { @class = "btn btn-warning" })
+        @*<dialog class="btn"></dialog>*@
+    </td>
+}
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

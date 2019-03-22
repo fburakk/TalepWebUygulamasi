@@ -29,6 +29,8 @@ namespace TalepWebUygulamasi.Entities
 
         public string DegerlendirmeZamani { get; set; }
 
+        public string TalebinYapildigiKisi { get; set; }
+
         [ForeignKey("TalebiYapan")]
         public HUser HUser { get; set; }
     }

@@ -38,6 +38,17 @@ namespace TalepWebUygulamasi.Web.Controllers
         {
             ViewData["uname"] = User.Identity.Name;
             ViewData["urole"] = kullaniciIslemler.KullaniciyiGetir(User.Identity.Name).Role;
+            var kullanicilar = kullaniciIslemler.KullanicilariGetir();
+            List<string> yoneticiler = new List<String>();
+            foreach (var kullanici in kullanicilar)
+            {
+                if (kullanici.Role == "Yönetici")
+                {
+                    yoneticiler.Add(kullanici.UserName);
+                }
+            }
+            IEnumerable < string > Iyoneticiler = yoneticiler;
+            ViewData["yoneticiler"] = Iyoneticiler;
             return View();
         }
 

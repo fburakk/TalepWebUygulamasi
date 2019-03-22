@@ -50,7 +50,7 @@
 
     @foreach (var item in Model)
     {
-        if (item.TalebiYapan == (string)uname)
+        if ( ( ((string)userRole == "Kullanıcı") && (item.TalebiYapan == (string)uname) )  || ( ((string)userRole == "Yönetici") && (item.TalebinYapildigiKisi == (string)uname) ) )
         {
 
             <tr>
@@ -96,10 +96,21 @@
                 }
                 @if ((string)userRole == "Yönetici")
                 {
-                    <td>
-                        @Html.ActionLink("Değerlendir", "Evaluate", new { id = item.TalepId }, new { @class = "btn btn-warning" })
-                        @*<dialog class="btn"></dialog>*@
-                    </td>
+                    if (item.Degerlendirildimi)
+                    {
+                        <td>
+                            @Html.ActionLink("Değerlendirildi", "Evaluate", new { id = item.TalepId }, new { @class = "btn btn-warning", @disabled = "disabled" })
+                            @*<dialog class="btn"></dialog>*@
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.ActionLink("Değerlendir", "Evaluate", new { id = item.TalepId }, new { @class = "btn btn-warning" })
+                            @*<dialog class="btn"></dialog>*@
+                        </td>
+                    }
+
                 }
             </tr>
         }

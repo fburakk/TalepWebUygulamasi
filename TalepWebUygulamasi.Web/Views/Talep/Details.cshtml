@@ -1,15 +1,23 @@
 ﻿@model TalepWebUygulamasi.Entities.Talep
 
 @{
-    ViewBag.Title = "Ayrıntılar";
+    ViewBag.Title = "Talep Ayrıntıları";
 }
 
-<h2>Talep Ayrıntıları</h2>
+<h2>Ayrıntılar</h2>
 
 <div>
-    <h4>Talep</h4>
+    <h4>Talep Ayrıntıları</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TalebiYapan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalebiYapan)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.TalepKonusu)
         </dt>
@@ -26,9 +34,59 @@
             @Html.DisplayFor(model => model.TalepAciklama)
         </dd>
 
+        @*<dt>
+            @Html.DisplayNameFor(model => model.FileUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileUrl)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degerlendirildimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degerlendirildimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TalepDegerlendirmesi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalepDegerlendirmesi)
+        </dd>
+
+        <dt>
+            @Html.Label("Olumlu")
+            @*@Html.DisplayNameFor(model => model.olumluOlumsuz)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.olumluOlumsuz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DegerlendirmeZamani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DegerlendirmeZamani)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.TalepId }) |
-    @Html.ActionLink("Talep Listesine Geri Dön", "Index")
+    @Html.ActionLink("Talebi Düzenle", "Edit", new { id = Model.TalepId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Talep Listesine Geri Dön", "Index", null, new { @class = "btn btn-primary" })
 </p>
+
+@*@Html.ActionLink("Düzenle", "Edit", new { id = item.TalepId }, new { @class = "btn btn-info" })*@
+
+
+
+
+@*<p>
+    @Html.ActionLink("Yeni Talep Oluştur", "Create", null, new { @class = "btn btn-primary" })
+</p>*@
